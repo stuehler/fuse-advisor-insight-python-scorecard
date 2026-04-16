@@ -1,0 +1,15 @@
+Hi {{name}}:
+
+Thank you for taking our brief survey. Attached is your personalized Advisor Insight scorecard, showing:
+	How you compare with other advisors
+	Your overall grade across five measures
+	Specific recommendations for improving your results
+	This should help you consider whether you’re leaving opportunity on the table.
+
+We also invite you to take another 2-minute survey. Like the first survey, it contains just 5 questions. In return, you'll receive another personalized scorecard benchmarking you against your peers and offering tailored recommendations.
+
+Click https://fa-explore.com/advisorinsight/invite?token={{invite}} to take the survey on {{topic}}.
+
+Thank you again for participating.
+
+If you no longer wish to receive these emails, you can email advisor_insight@fuse-research.com
