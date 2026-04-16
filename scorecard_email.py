@@ -25,7 +25,7 @@ topic = {13:'Time Management',
 email_subject = ['Your Advisor Insight Scorecard Is Ready! See How You Compare']
 
 def getEmail(participant,mail_link,path):
-    folder_path = "/home/ubuntu/python/"
+    folder_path = os.path.dirname(os.path.abspath(__file__))
     if mail_link == 0:
         ## html email
         file_name = 'email2_html.html'

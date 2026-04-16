@@ -5,7 +5,11 @@ import datetime as dt
 from io import StringIO
 from playwright.sync_api import sync_playwright
 from matplotlib.ticker import PercentFormatter
+from dotenv import load_dotenv
 
+load_dotenv()
+
+SCORECARDS_DIR = os.path.abspath(os.environ.get("SCORECARDS_DIR", "/home/ubuntu/python/scorecards"))
 
 ## Scoring from Loren
 question_display = [[r'1. Where in your marketing do you currently use AI?'],
@@ -539,8 +543,8 @@ def produceScorecard(user,df):
 
 
 
-    html_file = f"/home/ubuntu/python/scorecards/ai_scorecard_{user}.html"
-    pdf_path = f"/home/ubuntu/python/scorecards/ai_scorecard_{user}.pdf"
+    html_file = os.path.join(SCORECARDS_DIR, f"ai_scorecard_{user}.html")
+    pdf_path = os.path.join(SCORECARDS_DIR, f"ai_scorecard_{user}.pdf")
 
     
     with open(html_file, "w", encoding="utf-8") as f:
@@ -567,7 +571,3 @@ def produceScorecard(user,df):
         os.remove(html_file)
 
     return pdf_path
-
-
-
-

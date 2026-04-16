@@ -38,7 +38,7 @@ GET_TOKEN = os.environ.get(
 
 TRACK_STATUS = os.environ.get(
     "TRACK_STATUS",
-    "EXEC uspTrackScorecardStatus  @userid = :userid, @surveyid = :survey"
+    "EXEC uspTrackScorecardStatus  @email = :email, @surveyid = :survey"
 )
 
 
@@ -86,11 +86,5 @@ def getToken(survey: int, email: str) -> list[str] | None:
 
 def scorecardStatus(participant: tuple[int,str,str,int]) -> None:
       with engine.connect() as conn:
-        conn.execute(text(TRACK_STATUS),{"userid":participant[0],"survey":participant[3]})
+        conn.execute(text(TRACK_STATUS),{"email":participant[2],"survey":participant[3]})
         conn.commit()
-    
-##participant = [215,'Rick Ledbury','rledbury@fuse-research.com',62]
-##
-##scorecardStatus(participant)
-
-##token = getToken(64, "rledbury1@fuse-research.com")
