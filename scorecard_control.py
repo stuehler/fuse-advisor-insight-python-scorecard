@@ -1,4 +1,6 @@
 import os
+import sys
+import argparse
 import time
 import datetime as dt
 import pandas as pd
@@ -40,7 +42,7 @@ def runWealthsurvey(participant,mail_link,df):
     mail.getEmail(participant,mail_link,path)
 
 
-def main():
+def main(participant):
     df = data.getData()
     flag = 0
     surveys = [62, 66, 67, 13, 63, 64]
@@ -89,5 +91,14 @@ def main():
 
 
 if __name__ == "__main__":
-    main(participant)
+    parser = argparse.ArgumentParser(description="Generate and email a scorecard for a participant.")
+    parser.add_argument("--userid", type=int, required=True, help="The participant's user ID")
+    parser.add_argument("--name", type=str, required=True, help="The participant's full name")
+    parser.add_argument("--email", type=str, required=True, help="The participant's email address")
+    parser.add_argument("--surveyid", type=int, required=True, help="The survey ID to generate a scorecard for")
 
+    args = parser.parse_args()
+
+    participant = [args.userid, args.name, args.email, args.surveyid]
+
+    main(participant)

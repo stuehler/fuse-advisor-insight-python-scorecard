@@ -1,0 +1,19 @@
+# Virtual environment
+venv/
+
+# Environment variables
+.env
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Generated scorecards
+scorecards/
+
+# Playwright browsers
+.playwright/
+
+# macOS
+.DS_Store

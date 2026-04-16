@@ -52,7 +52,7 @@ def getEmail(participant,mail_link,path):
     else:
         ## html email
         file_name = 'email1_html.html'
-        subject_line = email_subject[1]
+        subject_line = email_subject[0]
         token = data.getToken(mail_link,participant[2])
 
         file_path = os.path.join(folder_path, file_name)
@@ -104,7 +104,7 @@ def sendEmail(email, email_text, subject_line, path, participant):
             f.read(),
             maintype="application",
             subtype="pdf",
-            filename=attachment_path
+            filename=os.path.basename(attachment_path)
         )
 
     context = ssl.create_default_context()
@@ -115,5 +115,3 @@ def sendEmail(email, email_text, subject_line, path, participant):
         server.ehlo()
         server.login(SMTP_USERNAME, SMTP_PASSWORD)
         server.send_message(msg)
-
-
