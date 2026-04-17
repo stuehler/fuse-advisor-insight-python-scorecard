@@ -1,5 +1,6 @@
 import os
 from dotenv import load_dotenv
+import sys
 import time
 import pandas as pd
 from sqlalchemy import create_engine, text
@@ -59,7 +60,7 @@ def getData(max_retries=3):
             result = run_query()
             return result
         except Exception as exc:
-            print(f"[ERROR] Attempt {attempt + 1}/{max_retries}: {exc}")
+            print(f"[ERROR] Attempt {attempt + 1}/{max_retries}: {exc}", file=sys.stderr)
     raise RuntimeError(f"getData failed after {max_retries} attempts")
             
 
@@ -77,5 +78,5 @@ def getToken(survey: int, email: str) -> list[str] | None:
         try:
             return create_token(survey, email)
         except Exception as exc:
-            print(f"[ERROR] {exc}")
+            print(f"[ERROR] {exc}", file=sys.stderr)
             break
