@@ -58,13 +58,14 @@ def run_query() -> pd.DataFrame | None:
         return df if not df.empty else None
     
 
-def getData():
-    while True:
+def getData(max_retries=3):
+    for attempt in range(max_retries):
         try:
             result = run_query()
             return result
         except Exception as exc:
-            print(f"[ERROR] {exc}")
+            print(f"[ERROR] Attempt {attempt + 1}/{max_retries}: {exc}")
+    raise RuntimeError(f"getData failed after {max_retries} attempts")
             
 
 def create_token(survey: int, email: str) -> tuple[str] | None:
