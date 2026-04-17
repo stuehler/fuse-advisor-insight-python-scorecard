@@ -80,8 +80,6 @@ def getEmail(participant,mail_link,path):
 
     sendEmail(email, email_text, subject_line, path, participant)
 
-    data.scorecardStatus(participant)
-
 
 def sendEmail(email, email_text, subject_line, path, participant):
     

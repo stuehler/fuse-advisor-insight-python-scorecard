@@ -93,12 +93,17 @@ def main(participant):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate and email a scorecard for a participant.")
     parser.add_argument("--userid", type=int, required=True, help="The participant's user ID")
-    parser.add_argument("--name", type=str, required=True, help="The participant's full name")
+    parser.add_argument("--name", type=str, required=False, default="", help="The participant's full name (defaults to 'Advisor' if missing or empty)")
     parser.add_argument("--email", type=str, required=True, help="The participant's email address")
     parser.add_argument("--surveyid", type=int, required=True, help="The survey ID to generate a scorecard for")
 
     args = parser.parse_args()
 
-    participant = [args.userid, args.name, args.email, args.surveyid]
+    # Normalize name: treat missing, empty, or whitespace-only as "Advisor"
+    name = args.name.strip() if args.name else ""
+    if not name:
+        name = "Advisor"
+
+    participant = [args.userid, name, args.email, args.surveyid]
 
     main(participant)

@@ -36,11 +36,6 @@ GET_TOKEN = os.environ.get(
     "select token from invitations where email = :email and survey_id = :survey"
 )
 
-TRACK_STATUS = os.environ.get(
-    "TRACK_STATUS",
-    "EXEC uspTrackScorecardStatus  @email = :email, @surveyid = :survey"
-)
-
 
 def get_engine():
     engine = create_engine(
@@ -84,8 +79,3 @@ def getToken(survey: int, email: str) -> list[str] | None:
         except Exception as exc:
             print(f"[ERROR] {exc}")
             break
-
-def scorecardStatus(participant: tuple[int,str,str,int]) -> None:
-      with engine.connect() as conn:
-        conn.execute(text(TRACK_STATUS),{"email":participant[2],"survey":participant[3]})
-        conn.commit()
